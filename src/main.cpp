@@ -4,7 +4,7 @@
 #include "ascii.cpp"
 #include "repair.cpp"
 //#include "QueryU.cpp" DANGEROUS MESS OF A CLASS
-
+#include <unistd.h>
 //Operational Funtion declaration
 
 	//clw, clears console
@@ -45,7 +45,8 @@ int main(){
 	
 	//Initial Splash Menu
 	printMainTitle();
-	loadBar(10, 3);
+	cout << "Loading..." << endl;
+	loadBar(10, 1);
 	
 	//Queue
 	
@@ -71,19 +72,14 @@ int main(){
 			//NO default case needed, input handling already managed in mainMenuSelection function
 			case 2:
 				queue.push_back(repairEntry(currentEmployeeName));
-				do{
-                                cout << "Press 'q' to go back to menu. ";
-                                cin >> quit;
-                                }while(quit != 'q');
+				cout << "Repair Added.." << endl;
+				cin.ignore();
 				clw();
 				break;
 			case 3:
 					queue.pop_back();
-					cout << "Last repair removed" << endl;
-				do{
-				cout << "Press 'q' to go back to menu. ";
-				cin >> quit;	
-				}while(quit != 'q');
+					cout << "Last repair removed..." << endl;
+				cin.ignore();
 				clw();
 				break;
 			case 1:
@@ -91,20 +87,14 @@ int main(){
 				for(unsigned int i = 0; i < queue.size(); i++){
 					formatRepair(queue[i]);
 				}
-				do{
-                                cout << "Press 'q' to go back to menu. ";
-                                cin >> quit;
-                                }while(quit != 'q');
+				cin.ignore();
 				clw();
 				break;
 			case 0:
 				break;
 			case 4:
 				cout << "Help will be added later....good luck" << endl;
-				do{
-                                cout << "Press 'q' to go back to menu. ";
-                                cin >> quit;
-                                }while(quit != 'q');
+				cin.ignore();
 				clw();
 				break;
 			case 5:
@@ -115,8 +105,6 @@ int main(){
 
 
 	}while(menuChoice != 0);
-		//Exit prompt
-		cin.ignore();
 	do{
        		cout << "Press enter to continue.." << endl;
 	} while(cin.get() != '\n');
@@ -157,11 +145,11 @@ Repair repairEntry(string employee){
 		cout << "\nQuote: ";
 		cin >> h;
 
-		cout << "\nPriority (Highest=1, Lowest=3, Normal=0)";
+		cout << "\nPriority (Highest=1, Lowest=3, Normal=0): ";
 		cin >> i;
 		cout << endl;
 
-		cout << "Is this information correct? y/n";
+		cout << "Is this information correct? (y/n): ";
 		cin >> correct;
 		
 	}while(correct == 'n');
@@ -177,13 +165,15 @@ void printMainTitle(){
 }
 
 void loadBar(int waitTime, int waitInterval){
+	unsigned int usecs = waitInterval * 1000000;
 	cout << "Loading [";
 	for(int i = 0; i < waitTime; i++){
-		usleep(waitInterval);
+		usleep(usecs);
 		cout << "#";
 	}
 	cout << "]\n Done in " << waitTime << " seconds." << endl;
-	usleep(2);	
+	unsigned int pauseU = 2000000;
+	usleep(pauseU);	
 }
 
 int mainMenuSelection(){
