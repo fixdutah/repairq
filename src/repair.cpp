@@ -11,10 +11,10 @@ private:
 	int priority;
 public:
 	//Param constr
-	Repair(string dn,string rn,string cfn,string cli,string en,string dd,string dt, double qu), int pri : 
-		device_name(dn), repair_name(rn), customer_first_name(cfn), customer_last_initial(cli), employee_name(en), dute_date(dd), due_time(dt), quote(qu), priority(pri) {}
+	Repair(string dn,string rn,string cfn,string cli,string en,string dd,string dt, double qu, int pri) : 
+		device_name(dn), repair_name(rn), customer_first_name(cfn), customer_last_initial(cli), employee_name(en), due_date(dd), due_time(dt), quote(qu), priority(pri) {}
 	//Default constr
-	Repar(){}
+	Repair(){}
 
 	//Getters
 	string getDeviceName(){
@@ -39,6 +39,7 @@ public:
 		return due_time;
 	}
 	double getQuote(){
+		std::setprecision(2);
 		return quote;
 	}
 	int getPriorityIndex(){
@@ -64,7 +65,9 @@ public:
 		}
 	}
 	//ResetAll
+	/*
 	reRepair(string dn,string rn,string cfn,string cli,string en,string dd,string dt, double qu, int pri) :
-                device_name(dn), repair_name(rn), customer_first_name(cfn), customer_last_initial(cli), employee_name(en), dute_date(dd), due_time(dt), quote(qu), priority(pri) {}
+                device_name(dn), repair_name(rn), customer_first_name(cfn), customer_last_initial(cli), employee_name(en), due_date(dd), due_time(dt), quote(qu), priority(pri) {}
 
+		*/
 };

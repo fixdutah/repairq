@@ -25,7 +25,7 @@ class QueryU {
 		//Setters
 		void setResponse(string _datType, string _question){
 
-			switch(datType){
+			switch(_datType){
 				case "int":
 					cout << _question;
 					try{
@@ -40,7 +40,7 @@ class QueryU {
 						getline(cin, answer);
 						responseString = answer;
 					break;
-				case "float":
+				/*case "float":
 					cout << _question;
 					try{
 						cin >> answer;
@@ -48,7 +48,7 @@ class QueryU {
 					} catch(exception e){
 						cout << e.what();
 					}
-					break;
+					break;*/
 				case "char":
 					cout << _question;
 					try{
