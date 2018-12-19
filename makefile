@@ -7,7 +7,7 @@ LDFLAGS =
 ODIR = obj
 SDIR = src
 
-_OBJS = main.o ascii.o repair.o #QueryU.o
+_OBJS = main.o ascii.o repair.o methods.o globalRes.o
 OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS))
 
 $(ODIR)/%.o: $(SDIR)/%.cpp
